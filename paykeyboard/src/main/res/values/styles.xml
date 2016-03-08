@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="keyboard_anim">
+        <item name="android:windowEnterAnimation">@anim/keyboard_anim_show</item>
+
+        <item name="android:windowExitAnimation">@anim/keyboard_anim_dismiss</item>
+    </style>
+</resources>

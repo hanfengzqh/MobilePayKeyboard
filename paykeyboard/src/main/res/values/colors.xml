@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="keyboard_common_button_nor">#FFFFFF</color>
+    <color name="keyboard_common_button_pre">#EEEEEE</color>
+    <color name="keyboard_gray_button_nor">#D1D5DB</color>
+    <color name="keyboard_gray_button_pre">#B2B6BC</color>
+    <color name="keyboard_common_divider">#BFBFBF</color>
+    <color name="keyboard_button_text_color">#000000</color>
+    <color name="password_divider_color">#E1E1E1</color>
+    <color name="cancel_text_color">#666666</color>
+    <color name="forget_text_color">#3399ff</color>
+    <color name="title_text_color">#333333</color>
+    <color name="keyboard_dialog_background">#F9F9F9</color>
+</resources>

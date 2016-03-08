@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/keyboard_dialog_background"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp">
+
+        <TextView
+            android:id="@+id/password_input_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="18dp"
+            android:text="@string/security_keyboard_cancel"
+            android:textColor="@color/cancel_text_color"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/password_input_main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="@string/security_keyboard_enter"
+            android:textColor="@color/title_text_color"
+            android:textSize="22sp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/password_input_sub_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="@string/security_keyboard_amount"
+        android:textColor="@color/cancel_text_color"
+        android:textSize="18sp" />
+
+    <com.hzy.paykeyboard.PasswordLayout
+        android:id="@+id/password_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/common_bg_inputbox_code"
+        app:dividerColor="@color/password_divider_color"
+        app:dividerWidth="1dp" />
+
+    <TextView
+        android:id="@+id/password_input_forget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="12dp"
+        android:text="@string/security_keyboard_forget"
+        android:textColor="@color/forget_text_color"
+        android:textSize="18sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@android:color/white">
+
+        <com.hzy.paykeyboard.KeyPanelLayout
+            android:id="@+id/password_key_panel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/password_key_panel"
+            android:layout_alignTop="@id/password_key_panel"
+            android:background="@drawable/keyboard_panel_foreground" />
+    </RelativeLayout>
+
+
+</LinearLayout>

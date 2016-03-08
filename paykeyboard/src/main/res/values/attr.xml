@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="PasswordLayout">
+        <attr name="passwordLength" format="integer" />
+        <attr name="dividerColor" format="color" />
+        <attr name="dividerWidth" format="dimension" />
+    </declare-styleable>
+
+</resources>
