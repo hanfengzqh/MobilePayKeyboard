@@ -7,4 +7,8 @@
         <attr name="dividerWidth" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="KeyPanelLayout">
+        <attr name="dotEnable" format="boolean" />
+    </declare-styleable>
+
 </resources>

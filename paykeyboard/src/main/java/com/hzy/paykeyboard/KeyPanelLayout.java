@@ -1,6 +1,7 @@
 package com.hzy.paykeyboard;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.v7.widget.GridLayout;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -17,13 +18,12 @@ import android.widget.TextView;
  */
 public class KeyPanelLayout extends FrameLayout implements View.OnClickListener {
 
-    public static final String[] DIGIT_KEYS = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0", "<"};
-    public static final int EMPTY_INDEX = 9;
-    public static final int BACK_INDEX = 11;
+    public static final String[] DIGIT_KEYS = {"1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "0", "<"};
     public static final int NUMBER_MAX = 9;
     public static final int NUMBER_MIN = 0;
 
     private IKeyEventListener mKeyboardListener;
+    private boolean mDotEnabled = false;
 
     public KeyPanelLayout(Context context) {
         super(context);
@@ -47,7 +47,9 @@ public class KeyPanelLayout extends FrameLayout implements View.OnClickListener 
     }
 
     private void initAttrs(Context context, AttributeSet attrs, int defStyleAttr) {
-
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.KeyPanelLayout, defStyleAttr, 0);
+        mDotEnabled = ta.getBoolean(R.styleable.KeyPanelLayout_dotEnable, mDotEnabled);
+        ta.recycle();
     }
 
     private void initViews(Context context) {
@@ -68,38 +70,45 @@ public class KeyPanelLayout extends FrameLayout implements View.OnClickListener 
     private void initButtonView(ViewGroup viewGroup, int index) {
         TextView buttonText = (TextView) viewGroup.findViewById(R.id.button_text);
         ImageView buttonImage = (ImageView) viewGroup.findViewById(R.id.button_image);
-        buttonText.setText(DIGIT_KEYS[index]);
-        viewGroup.setTag(DIGIT_KEYS[index]);
+        String keyText = DIGIT_KEYS[index];
+        viewGroup.setTag(keyText);
         viewGroup.setOnClickListener(this);
-
-        if (index == EMPTY_INDEX || index == BACK_INDEX) {
+        if (keyText.equals("<")) {
             viewGroup.setBackgroundResource(R.drawable.keyboard_gray_button);
-            if (index == EMPTY_INDEX) {
+            buttonImage.setImageResource(R.drawable.safe_keyboard_ic_delete);
+            return;
+        }
+        if (keyText.equals(".")) {
+            viewGroup.setBackgroundResource(R.drawable.keyboard_gray_button);
+            if (!mDotEnabled) {
                 viewGroup.setClickable(false);
                 viewGroup.setEnabled(false);
-            } else {
-                buttonText.setVisibility(View.GONE);
-                buttonImage.setImageResource(R.drawable.safe_keyboard_ic_delete);
+                return;
             }
         }
+        buttonText.setText(keyText);
     }
 
     @Override
     public void onClick(View v) {
         if (mKeyboardListener != null) {
-            String code = (String) v.getTag();
-            if (code.equals("<")) {
-                mKeyboardListener.onKeyDown(KeyEvent.KEYCODE_DEL, code);
+            String keyCode = (String) v.getTag();
+            int eventCode = KeyEvent.KEYCODE_UNKNOWN;
+            if (keyCode.equals("<")) {
+                eventCode = KeyEvent.KEYCODE_DEL;
+            } else if (keyCode.equals(".")) {
+                eventCode = KeyEvent.KEYCODE_NUMPAD_DOT;
             } else {
                 try {
-                    int num = Integer.parseInt(code);
+                    int num = Integer.parseInt(keyCode);
                     if (num >= NUMBER_MIN && num <= NUMBER_MAX) {
-                        mKeyboardListener.onKeyDown(KeyEvent.KEYCODE_0 + num, code);
+                        eventCode = KeyEvent.KEYCODE_NUMPAD_0 + num;
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
+            mKeyboardListener.onKeyDown(eventCode, keyCode);
         }
     }
 

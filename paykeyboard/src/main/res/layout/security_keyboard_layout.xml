@@ -35,8 +35,8 @@
         android:id="@+id/password_input_sub_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="26dp"
         android:gravity="center"
         android:text="@string/security_keyboard_amount"
         android:textColor="@color/cancel_text_color"
@@ -73,7 +73,8 @@
         <com.hzy.paykeyboard.KeyPanelLayout
             android:id="@+id/password_key_panel"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:dotEnable="true" />
 
         <View
             android:layout_width="match_parent"
